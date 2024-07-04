@@ -5,15 +5,12 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework_api_key.models import APIKey
 from rest_framework_api_key.permissions import HasAPIKey
 from rest_framework import status
-from django.conf import settings
 from decouple import config
 
 from django.http import JsonResponse
 import requests
 import json
 
-
-# Acceder a la variable de entorno
 project_id = config('PROJECT_ID')
 api_key = config('KEY_API_OPENAI')
 
@@ -64,10 +61,4 @@ class APIChatbot(APIView):
 def createCredentials(request):
     api_key, key = APIKey.objects.create_key(name="nombre-correo")
     print("API Key:", key, api_key)
-    
     return JsonResponse({'status':200})
-
-# mi API Key: gJm1SPPZ.0MttQxE3kELqhvVNxRTfQsZl3uzxYMC0   nombre-correo
-
-def test(request):
-    return JsonResponse({'status':api_key})

@@ -5,8 +5,6 @@ from . import views;
 
 urlpatterns = [
     path('', APIChatbot.as_view(), name="chat"),
-    path('create', views.createCredentials, name="create"),
-    path('test', views.test, name="test"),
-
+    #path('create', views.createCredentials, name="create"),
 ]
    
