@@ -6,13 +6,15 @@ from rest_framework_api_key.models import APIKey
 from rest_framework_api_key.permissions import HasAPIKey
 from rest_framework import status
 from decouple import config
-
+import os
 from django.http import JsonResponse
 import requests
 import json
 
-project_id = config('PROJECT_ID')
-api_key = config('KEY_API_OPENAI')
+os.environ['PROJECT_ID'] = config("PROJECT_ID")
+os.environ['OPENAI_API_KEY'] = config("KEY_API_OPENAI")
+project_id = os.getenv('PROJECT_ID')
+api_key = os.getenv('OPENAI_API_KEY')
 
 def cors_exempt(view_func):
     def wrapped_view(request, *args, **kwargs):
@@ -55,7 +57,7 @@ class APIChatbot(APIView):
                 "response": response.json()['choices'][0]['message']['content']
                 }, status=status.HTTP_200_OK)
         else:
-            return Response({"status":404}, status.HTTP_404_NOT_FOUND)
+            return Response({"status":404, "response":response}, status.HTTP_404_NOT_FOUND)
 
 
 def createCredentials(request):
