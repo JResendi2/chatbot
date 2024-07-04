@@ -10,6 +10,7 @@ from decouple import config
 
 from django.http import JsonResponse
 import requests
+import os
 import json
 
 
@@ -70,5 +71,4 @@ def createCredentials(request):
 # mi API Key: gJm1SPPZ.0MttQxE3kELqhvVNxRTfQsZl3uzxYMC0   nombre-correo
 
 def test(request):
-    secret_value = settings.KEY_API_OPENAI
-    return JsonResponse({'status':secret_value})
+    return JsonResponse({'status':os.getenv('KEY_API_OPENAI')})
