@@ -1,0 +1,5 @@
+openai
+djangorestframework 
+djangorestframework-api-key
+django-cors-headers
+python-decouple
