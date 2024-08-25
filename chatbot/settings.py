@@ -56,9 +56,6 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
 ]
 
-CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.2:8000",
-]
 
 # Permitir ciertos métodos HTTP
 CORS_ALLOW_METHODS = [
